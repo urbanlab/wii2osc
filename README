@@ -1,0 +1,73 @@
+Wii2OSC - README
+$Id: README 6 2007-11-19 16:56:56Z leucos $
+=================
+
+WHAT ?
+======
+wii2osc converts data received from a wiimote to OSC.
+Every keypress will generate an OSC packet.
+Every keyrelease will also generate an OSC packet.
+If accelerometer is activated (-x flag), every change in accelerometer
+values will generate a packet (watch your batteries !)
+
+
+HOW ?
+=====
+Usage : wii2osc -s <osc server> -p <osc port> [-w wiimote_address] [-gx]
+
+
+-s <osc server>
+ 
+ OSC server IP address (mandatory, no default).
+ Put the OSC server IP address here. 
+
+-p <osc port> : OSC server port (mandatory, no default)
+
+ Put the OSC server port address here. 
+   
+-a <address> : OSC base address (default : '/')
+
+ Base address for the OSC message (also called 'path'). wii2osc will
+ take care of the trailing '/'. If no path is given, wii2osc will use '/'
+
+-x : use accelerometer (default : no)
+
+ This switch forces the use of the accelerometer (eating up your battery, 
+ and flooding your network w/ OSC packets). Default is to deactivate it.
+
+-g : enable debugging (default : no)
+
+ Prints wiimote states and accelerometer values (if -x supplied)
+ to stderr.
+
+-w <wiimote address> : Wiimote bluetooth hardware address (default : autodetect)
+
+ Specify wiimote hardware address. If not used, wiimote will be autodetected.
+ To get the hardware address for yor wiimote, try autodetection first.
+ If it doesn't work, you can check it out with 'hcitool scan' :
+
+user@host:~$ hcitool scan
+Scanning ...
+        00:15:41:9D:C0:53       laptop-0
+        00:15:41:9D:AB:42       laptop-1
+        00:19:FD:BD:C0:4D       Nintendo RVL-CNT-01
+user@host:~$ 
+
+
+BUILDING
+========
+To build wii2osc, just issue make.
+You need to have at least libwiimote-0.4 and liblo-0.23
+installed properly.
+
+LICENCE
+=======
+This code is GPLv2 and is provided as-is.
+Send all inquiries/flames/comments to mblanc@erasme.org.
+
+If you use wii2osc to make something übercool, please,
+send your story.
+
+Have fun.
+
+M
